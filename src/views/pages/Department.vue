@@ -120,7 +120,7 @@ export default {
       })
     },
     departAdd () {
-      this.$http.get('http://112.74.48.64:80/department/add' + {name: this.departAddInput.name, description: this.departAddInput.description}).then(response => {
+      this.$http.post('http://112.74.48.64:80/department/add' + {name: this.departAddInput.name, description: this.departAddInput.description}).then(response => {
         this.dialogFormVisible = false
         console.log(response)
       })
