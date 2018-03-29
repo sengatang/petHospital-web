@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     getDepartmentList () {
+      this.departSearchInput = ''
       this.$http.get('http://112.74.48.64:80/department/list').then(response => {
         if (response.body.status === 'success') {
           this.departList = response.body.data
@@ -98,11 +99,11 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$http.delete('http://112.74.48.64:80/department/delete/' + item.id).then(response => {
-          console.log(response)
-        })
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
+          this.getDepartmentList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
         })
       }).catch(() => {
         this.$message({

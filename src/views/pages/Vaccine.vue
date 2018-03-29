@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     getVaccineList () {
+      this.vaccineSearchInput = ''
       this.$http.get('http://112.74.48.64:80/vaccine/list').then(response => {
         if (response.body.status === 'success') {
           this.vaccineList = response.body.data
@@ -86,6 +87,26 @@ export default {
           this.vaccineList = []
           this.vaccineList.push(response.body.data)
         }
+      })
+    },
+    vaccineDelete (item) {
+      this.$confirm('此操作将永久删除该疫苗信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.delete('http://112.74.48.64:80/vaccine/delete/' + item.id).then(response => {
+          this.getVaccineList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
       })
     }
   }
