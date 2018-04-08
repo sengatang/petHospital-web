@@ -138,11 +138,11 @@ export default {
       }
     },
     userSearch () {
-      this.$http.get('http://112.74.48.64:80/user/{' + this.userSearchInput + '}').then(response => {
-        // if (response.body.status === 'success') {
-        //   this.userList = response.body.data
-        // }
-        console.log(response)
+      this.$http.get('http://112.74.48.64:80/user/' + this.userSearchInput).then(response => {
+        if (response.body.status === 'success') {
+          this.userList = []
+          this.userList.push(response.body.data)
+        }
       })
     },
     userDelete (item) {
