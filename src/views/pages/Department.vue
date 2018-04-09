@@ -162,16 +162,15 @@ export default {
     },
     departEdit () {
       console.log(this.departEditInput)
-      this.$http.put('http://112.74.48.64:80/department/edit', {id: this.departEditInput.id, departname: this.departEditInput.name, description: this.departEditInput.description}).then(response => {
-        // if (response.body.status === 'success') {
-        //   this.editDepartVis = false
-        //   this.$message({
-        //     type: 'success',
-        //     message: '修改成功!'
-        //   })
-        //   this.getDepartmentList()
-        // }
-        console.log(response)
+      this.$http.put('http://112.74.48.64:80/department/edit', {id: this.departEditInput.id, name: this.departEditInput.name, description: this.departEditInput.description}).then(response => {
+        if (response.body.status === 'success') {
+          this.editDepartVis = false
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
+          })
+          this.getDepartmentList()
+        }
       })
     }
   }
