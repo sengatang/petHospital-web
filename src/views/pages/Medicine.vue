@@ -12,8 +12,38 @@
           <el-button type="primary" @click="medicineSearch" >查询</el-button>
           <el-button  @click="getMedicineList" >清空</el-button>
         </el-form-item>
-        <el-button plain style="float:right" @click="addUserVis=true">添加</el-button>
+        <el-button plain style="float:right" @click="addMedicineVis=true">添加</el-button>
       </el-form>
+
+      <el-dialog title="新增药品" :visible.sync="addMedicineVis">
+        <el-form :model="medicineAddInput">
+          <el-form-item label="药品名称">
+            <el-input v-model="medicineAddInput.name" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="药品描述">
+            <el-input v-model="medicineAddInput.description" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="可用范围">
+            <el-input v-model="medicineAddInput.illness" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="有效期限">
+            <el-date-picker
+              v-model="medicineAddInput.date"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="生产日期"
+              end-placeholder="有效日期">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="药品价格">
+            <el-input-number v-model="medicineAddInput.price" label="描述文字"></el-input-number>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="addVaccineVis = false">取 消</el-button>
+          <el-button type="primary" @click="medicineAdd">确 定</el-button>
+        </div>
+      </el-dialog>
 
      <el-table
       :data="medicineList"
@@ -63,7 +93,16 @@ export default {
   data: () => {
     return {
       medicineList: [],
-      medicineSearchInput: ''
+      medicineSearchInput: '',
+      addMedicineVis: false,
+      medicineAddInput: {
+        name: '',
+        description: '',
+        price: 0,
+        productionDate: '',
+        date: [],
+        expirationDate: ''
+      }
     }
   },
   mounted: function () {
@@ -104,6 +143,20 @@ export default {
           type: 'info',
           message: '已取消删除'
         })
+      })
+    },
+    medicineAdd () {
+      this.medicineAddInput.productionDate = this.medicineAddInput.date[0]
+      this.medicineAddInput.expirationDate = this.medicineAddInput.date[1]
+      this.$http.post('http://112.74.48.64:80/medicine/add', {name: this.medicineAddInput.name, description: this.medicineAddInput.description, price: this.medicineAddInput.price, productionDate: this.medicineAddInput.productionDate, expirationDate: this.medicineAddInput.expirationDate}).then(response => {
+        if (response.body.status === 'success') {
+          this.addMedicineVis = false
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
+          })
+          this.getMedicineList()
+        }
       })
     }
   }
