@@ -87,33 +87,31 @@ export default new Router({
               path: 'cases',
               name: '病例学习',
               component: Cases
+            }]
+        },
+        {
+          path: '/system',
+          redirect: '/system/department',
+          name: '系统功能管理',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'department',
+              name: '科室管理',
+              component: Department
             },
             {
-              path: '/system',
-              redirect: '/system/department',
-              name: '系统功能管理',
-              component: {
-                render (c) { return c('router-view') }
-              },
-              children: [
-                {
-                  path: 'department',
-                  name: '科室管理',
-                  component: Department
-                },
-                {
-                  path: 'vaccine',
-                  name: '疫苗管理',
-                  component: Vaccine
-                },
-                {
-                  path: 'medicine',
-                  name: '药品管理',
-                  component: Medicine
-                }
-              ]
-            }
-          ]
+              path: 'vaccine',
+              name: '疫苗管理',
+              component: Vaccine
+            },
+            {
+              path: 'medicine',
+              name: '药品管理',
+              component: Medicine
+            }]
         }
       ]
     }

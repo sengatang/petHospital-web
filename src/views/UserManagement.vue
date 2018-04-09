@@ -39,12 +39,57 @@
             <el-input v-model="userAddInput.status" auto-complete="off" style="width:50%"></el-input>
           </el-form-item>
           <el-form-item label="所属部门">
-            <el-input v-model="userAddInput.department" auto-complete="off" style="width:50%"></el-input>
+             <el-select v-model="userAddInput.selectDepart" placeholder="请选择" style="width:50%">
+              <el-option
+                v-for="item in userAddInput.department"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
           <el-button type="primary" @click="userAdd">确 定</el-button>
+        </div>
+      </el-dialog>
+
+      <el-dialog title="修改用户" :visible.sync="editUserVis">
+        <el-form :model="userEditInput">
+          <el-form-item label="用户名称">
+            <el-input v-model="userEditInput.name" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="用户密码">
+            <el-input v-model="userEditInput.password" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="用户角色">
+            <el-select v-model="userEditInput.selectRole" placeholder="请选择" style="width:50%">
+              <el-option
+                v-for="item in userEditInput.role"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="用户状态">
+            <el-input v-model="userEditInput.status" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="所属部门">
+             <el-select v-model="userEditInput.selectDepart" placeholder="请选择" style="width:50%">
+              <el-option
+                v-for="item in userEditInput.department"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="editUserVis = false">取 消</el-button>
+          <el-button type="primary" @click="userEditConfirm">确 定</el-button>
         </div>
       </el-dialog>
 
@@ -77,7 +122,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button @click="userDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button  size="mini" plain type="primary" >编辑</el-button>
+          <el-button  @click="userEdit(scope.row)"  size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
      </el-table>
@@ -93,26 +138,76 @@ export default {
       userList: [],
       userSearchInput: '',
       addUserVis: false,
+      editUserVis: false,
       userAddInput: {
         name: '',
-        department: '',
         role: [
           {
-            value: '1',
+            value: 1,
             label: '前台'
           },
           {
-            value: '2',
+            value: 2,
             label: '执业兽医师'
           },
           {
-            value: '3',
+            value: 3,
             label: '助理'
           }
         ],
         selectRole: '',
         password: '',
-        status: 0
+        status: 0,
+        selectDepart: '',
+        department: [
+          {
+            value: 1,
+            label: '部门A'
+          },
+          {
+            value: 2,
+            label: '部门B'
+          },
+          {
+            value: 3,
+            label: '部门C'
+          }
+        ]
+      },
+      userEditInput: {
+        name: '',
+        role: [
+          {
+            value: 1,
+            label: '前台'
+          },
+          {
+            value: 2,
+            label: '执业兽医师'
+          },
+          {
+            value: 3,
+            label: '助理'
+          }
+        ],
+        selectRole: '',
+        password: '',
+        status: 0,
+        selectDepart: '',
+        department: [
+          {
+            value: 1,
+            label: '部门A'
+          },
+          {
+            value: 2,
+            label: '部门B'
+          },
+          {
+            value: 3,
+            label: '部门C'
+          }
+        ]
       }
     }
   },
@@ -152,7 +247,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$http.delete('http://112.74.48.64:80/user/delete/' + item.id).then(response => {
-          console.log(response)
+          this.getUserList()
           this.$message({
             type: 'success',
             message: '删除成功!'
@@ -166,9 +261,38 @@ export default {
       })
     },
     userAdd () {
-      this.$http.post('http://112.74.48.64:80/user/add' + {name: this.userAddInput.name, password: this.userAddInput.password, role: this.userAddInput.selectRole, status: this.userAddInput.status, departmentid: this.userAddInput.department}).then(response => {
-        this.addUserVis = false
-        console.log(response)
+      console.log(this.userAddInput)
+      this.$http.post('http://112.74.48.64:80/user/add', {name: this.userAddInput.name, password: this.userAddInput.password, role: this.userAddInput.selectRole, status: this.userAddInput.status, department: {id: this.userAddInput.selectDepart}}).then(response => {
+        if (response.body.status === 'success') {
+          this.addUserVis = false
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
+          })
+          this.getUserList()
+        }
+      })
+    },
+    userEdit (item) {
+      // console.log('item', item)
+      this.editUserVis = true
+      this.userEditInput.name = item.name
+      this.userEditInput.id = item.id
+      this.userEditInput.selectRole = item.role
+      this.userEditInput.status = item.status
+      this.userEditInput.selectDepart = item.department.id
+      // console.log('this', this.userEditInput)
+    },
+    userEditConfirm () {
+      this.$http.put('http://112.74.48.64:80/user/edit', {id: this.userEditInput.id, password: this.userEditInput.password, name: this.userEditInput.name, role: this.userEditInput.selectRole, department: {id: this.userEditInput.selectDepart}, status: this.userEditInput.status}).then(response => {
+        if (response.body.status === 'success') {
+          this.editUserVis = false
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
+          })
+          this.getUserList()
+        }
       })
     }
   }
