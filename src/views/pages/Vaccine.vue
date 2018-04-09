@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card>
+    <el-card class="vaccine">
       <div slot="header" class="clearfix">
       <span>疫苗管理</span>
       </div>
@@ -13,8 +13,38 @@
         <el-button type="primary" @click="vaccineSearch" >查询</el-button>
         <el-button  @click="getVaccineList" >清空</el-button>
       </el-form-item>
-      <el-button plain style="float:right" @click="addUserVis=true">添加</el-button>
+      <el-button plain style="float:right" @click="addVaccineVis=true">添加</el-button>
     </el-form>
+
+    <el-dialog title="新增疫苗" :visible.sync="addVaccineVis">
+        <el-form :model="vaccineAddInput">
+          <el-form-item label="疫苗名称">
+            <el-input v-model="vaccineAddInput.name" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="疫苗描述">
+            <el-input v-model="vaccineAddInput.description" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="可用范围">
+            <el-input v-model="vaccineAddInput.illness" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="有效期限">
+            <el-date-picker
+              v-model="vaccineAddInput.date"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="疫苗价格">
+            <el-input-number v-model="vaccineAddInput.price" label="描述文字"></el-input-number>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="addVaccineVis = false">取 消</el-button>
+          <el-button type="primary" @click="vaccineAdd">确 定</el-button>
+        </div>
+      </el-dialog>
 
     <el-table
       :data="vaccineList"
@@ -65,7 +95,16 @@ export default {
   data: () => {
     return {
       vaccineList: [],
-      vaccineSearchInput: ''
+      vaccineSearchInput: '',
+      addVaccineVis: false,
+      vaccineAddInput: {
+        name: '',
+        description: '',
+        price: 0,
+        productionDate: '',
+        date: [],
+        expirationDate: ''
+      }
     }
   },
   mounted: function () {
@@ -108,6 +147,21 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    vaccineAdd () {
+      this.vaccineAddInput.productionDate = this.vaccineAddInput.date[0]
+      this.vaccineAddInput.expirationDate = this.vaccineAddInput.date[1]
+      console.log(this.vaccineAddInput)
+      this.$http.post('http://112.74.48.64:80/vaccine/add', {name: this.vaccineAddInput.name, description: this.vaccineAddInput.description, price: this.vaccineAddInput.price, productionDate: this.vaccineAddInput.productionDate, expirationDate: this.vaccineAddInput.expirationDate}).then(response => {
+        if (response.body.status === 'success') {
+          this.addVaccineVis = false
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
+          })
+          this.getVaccineList()
+        }
+      })
     }
   }
 }
@@ -115,5 +169,8 @@ export default {
 <style>
 .el-card{
   height: 860px;
+}
+.vaccine .el-range-editor.el-input__inner{
+  width: 50%;
 }
 </style>
