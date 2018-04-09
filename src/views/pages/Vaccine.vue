@@ -46,6 +46,37 @@
         </div>
       </el-dialog>
 
+
+       <el-dialog title="修改疫苗信息" :visible.sync="editVaccineVis">
+        <el-form :model="vaccineEditInput">
+          <el-form-item label="疫苗名称">
+            <el-input v-model="vaccineEditInput.name" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="疫苗描述">
+            <el-input v-model="vaccineEditInput.description" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="可用范围">
+            <el-input v-model="vaccineEditInput.illness" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="有效期限">
+            <el-date-picker
+              v-model="vaccineEditInput.date"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="疫苗价格">
+            <el-input-number v-model="vaccineEditInput.price" label="描述文字"></el-input-number>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="editVaccineVis = false">取 消</el-button>
+          <el-button type="primary" @click="vaccineEditConfirm">确 定</el-button>
+        </div>
+      </el-dialog>
+  
     <el-table
       :data="vaccineList"
       stripe
@@ -79,7 +110,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button @click="vaccineDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button  size="mini" plain type="primary" >编辑</el-button>
+          <el-button  @click="vaccineEdit(scope.row)" size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
      </el-table>
@@ -98,6 +129,15 @@ export default {
       vaccineSearchInput: '',
       addVaccineVis: false,
       vaccineAddInput: {
+        name: '',
+        description: '',
+        price: 0,
+        productionDate: '',
+        date: [],
+        expirationDate: ''
+      },
+      editVaccineVis: false,
+      vaccineEditInput: {
         name: '',
         description: '',
         price: 0,
@@ -161,6 +201,32 @@ export default {
           })
           this.getVaccineList()
         }
+      })
+    },
+    vaccineEdit (item) {
+      this.editVaccineVis = true
+      this.vaccineEditInput.name = item.name
+      this.vaccineEditInput.id = item.id
+      this.vaccineEditInput.price = item.price
+      this.vaccineEditInput.description = item.description
+      this.vaccineEditInput.illness = item.illness
+      this.vaccineEditInput.date[0] = item.productionDate
+      this.vaccineEditInput.date[1] = item.expirationDate
+      this.vaccineEditInput.productionDate = item.productionDate
+      this.vaccineEditInput.expirationDate = item.expirationDate
+    },
+    vaccineEditConfirm () {
+      this.$http.put('http://112.74.48.64:80/vaccine/edit', {id: this.vaccineEditInput.id, name: this.vaccineEditInput.name, description: this.vaccineEditInput.description, price: this.vaccineEditInput.price, productionDate: this.vaccineEditInput.date[0], expirationDate: this.vaccineEditInput.date[1]}).then(response => {
+        if (response.body.status === 'success') {
+          this.editVaccineVis = false
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
+          })
+          this.getVaccineList()
+        }
+        // console.log(this.vaccineEditInput)
+        // console.log(response)
       })
     }
   }

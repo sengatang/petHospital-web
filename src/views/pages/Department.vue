@@ -43,7 +43,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="editDepartVis = false">取 消</el-button>
-          <el-button type="primary" @click="departEdit">确 定</el-button>
+          <el-button type="primary" @click="departEditConfirm">确 定</el-button>
         </div>
       </el-dialog>
 
@@ -72,7 +72,7 @@
         width="300">
         <template slot-scope="scope">
           <el-button @click="departDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button @click="editDelete(scope.row)"  size="mini" plain type="primary" >编辑</el-button>
+          <el-button @click="departEdit(scope.row)"  size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
      </el-table>
@@ -153,15 +153,15 @@ export default {
         }
       })
     },
-    editDelete (item) {
+    departEdit (item) {
       this.editDepartVis = true
       this.departEditInput.name = item.name
       this.departEditInput.description = item.description
       this.departEditInput.id = item.id
-      console.log('this', this.departEditInput)
+      // console.log('this', this.departEditInput)
     },
-    departEdit () {
-      console.log(this.departEditInput)
+    departEditConfirm () {
+      // console.log(this.departEditInput)
       this.$http.put('http://112.74.48.64:80/department/edit', {id: this.departEditInput.id, name: this.departEditInput.name, description: this.departEditInput.description}).then(response => {
         if (response.body.status === 'success') {
           this.editDepartVis = false
