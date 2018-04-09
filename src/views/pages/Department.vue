@@ -27,8 +27,23 @@
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button @click="addDepartVis = false">取 消</el-button>
           <el-button type="primary" @click="departAdd">确 定</el-button>
+        </div>
+      </el-dialog>
+      
+      <el-dialog title="编辑科室" :visible.sync="editDepartVis">
+        <el-form :model="departEditInput">
+          <el-form-item label="科室名称">
+            <el-input v-model="departEditInput.name" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="科室描述">
+            <el-input v-model="departEditInput.description" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="editDepartVis = false">取 消</el-button>
+          <el-button type="primary" @click="departEdit">确 定</el-button>
         </div>
       </el-dialog>
 
@@ -57,7 +72,7 @@
         width="300">
         <template slot-scope="scope">
           <el-button @click="departDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button  size="mini" plain type="primary" >编辑</el-button>
+          <el-button @click="editDelete(scope.row)"  size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
      </el-table>
@@ -77,6 +92,12 @@ export default {
       departAddInput: {
         name: '',
         description: ''
+      },
+      editDepartVis: false,
+      departEditInput: {
+        name: '',
+        description: '',
+        id: 0
       }
     }
   },
@@ -121,8 +142,35 @@ export default {
       })
     },
     departAdd () {
-      this.$http.post('http://112.74.48.64:80/department/add' + {name: this.departAddInput.name, description: this.departAddInput.description}).then(response => {
-        this.dialogFormVisible = false
+      this.$http.post('http://112.74.48.64:80/department/add', {name: this.departAddInput.name, description: this.departAddInput.description}).then(response => {
+        if (response.body.status === 'success') {
+          this.addDepartVis = false
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
+          })
+          this.getDepartmentList()
+        }
+      })
+    },
+    editDelete (item) {
+      this.editDepartVis = true
+      this.departEditInput.name = item.name
+      this.departEditInput.description = item.description
+      this.departEditInput.id = item.id
+      console.log('this', this.departEditInput)
+    },
+    departEdit () {
+      console.log(this.departEditInput)
+      this.$http.put('http://112.74.48.64:80/department/edit', {id: this.departEditInput.id, departname: this.departEditInput.name, description: this.departEditInput.description}).then(response => {
+        // if (response.body.status === 'success') {
+        //   this.editDepartVis = false
+        //   this.$message({
+        //     type: 'success',
+        //     message: '修改成功!'
+        //   })
+        //   this.getDepartmentList()
+        // }
         console.log(response)
       })
     }

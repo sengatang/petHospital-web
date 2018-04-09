@@ -153,10 +153,10 @@ export default {
       }).then(() => {
         this.$http.delete('http://112.74.48.64:80/user/delete/' + item.id).then(response => {
           console.log(response)
-        })
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
         })
       }).catch(() => {
         this.$message({
