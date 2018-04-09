@@ -22,7 +22,7 @@
       style="width: 100%">
       <el-table-column
         prop="name"
-        label="疫苗名称"
+        label="药品名称"
         width="180">
       </el-table-column>
       <el-table-column
@@ -41,13 +41,13 @@
       </el-table-column>
       <el-table-column
         prop="description"
-        label="适用范围">
+        label="使用范围">
       </el-table-column>
       <el-table-column
         fixed="right"
         label="操作">
         <template slot-scope="scope">
-          <el-button @click="vaccineDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
+          <el-button @click="medicineDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
           <el-button  size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
@@ -74,7 +74,7 @@ export default {
       this.$http.get('http://112.74.48.64:80/medicine/list').then(response => {
         if (response.body.status === 'success') {
           this.medicineList = response.body.data
-          console.log(this.medicineList)
+          // console.log(this.medicineList)
         }
       })
     },
@@ -84,6 +84,26 @@ export default {
           this.medicineList = []
           this.medicineList.push(response.body.data)
         }
+      })
+    },
+    medicineDelete (item) {
+      this.$confirm('此操作将永久删除该药品信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.delete('http://112.74.48.64:80/medicine/delete/' + item.id).then(response => {
+          this.getMedicineList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
       })
     }
   }
