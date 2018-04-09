@@ -45,6 +45,36 @@
         </div>
       </el-dialog>
 
+      <el-dialog title="新增药品" :visible.sync="editMedicineVis">
+        <el-form :model="medicineEditInput">
+          <el-form-item label="药品名称">
+            <el-input v-model="medicineEditInput.name" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="药品描述">
+            <el-input v-model="medicineEditInput.description" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="可用范围">
+            <el-input v-model="medicineEditInput.illness" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="有效期限">
+            <el-date-picker
+              v-model="medicineEditInput.date"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="生产日期"
+              end-placeholder="有效日期">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="药品价格">
+            <el-input-number v-model="medicineEditInput.price" label="描述文字"></el-input-number>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="editMedicineVis = false">取 消</el-button>
+          <el-button type="primary" @click="medicineEditConfirm">确 定</el-button>
+        </div>
+      </el-dialog>
+
      <el-table
       :data="medicineList"
       stripe
@@ -78,7 +108,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button @click="medicineDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button  size="mini" plain type="primary" >编辑</el-button>
+          <el-button   @click="medicineEdit(scope.row)" size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
      </el-table>
@@ -102,7 +132,16 @@ export default {
         productionDate: '',
         date: [],
         expirationDate: ''
-      }
+      },
+      medicineEditInput: {
+        name: '',
+        description: '',
+        price: 0,
+        productionDate: '',
+        date: [],
+        expirationDate: ''
+      },
+      editMedicineVis: false
     }
   },
   mounted: function () {
@@ -154,6 +193,30 @@ export default {
           this.$message({
             type: 'success',
             message: '添加成功!'
+          })
+          this.getMedicineList()
+        }
+      })
+    },
+    medicineEdit (item) {
+      this.editMedicineVis = true
+      this.medicineEditInput.name = item.name
+      this.medicineEditInput.id = item.id
+      this.medicineEditInput.price = item.price
+      this.medicineEditInput.description = item.description
+      this.medicineEditInput.illness = item.illness
+      this.medicineEditInput.date[0] = item.productionDate
+      this.medicineEditInput.date[1] = item.expirationDate
+      this.medicineEditInput.productionDate = item.productionDate
+      this.medicineEditInput.expirationDate = item.expirationDate
+    },
+    medicineEditConfirm () {
+      this.$http.put('http://112.74.48.64:80/medicine/edit', {id: this.medicineEditInput.id, name: this.medicineEditInput.name, description: this.medicineEditInput.description, price: this.medicineEditInput.price, productionDate: this.medicineEditInput.date[0], expirationDate: this.medicineEditInput.date[1]}).then(response => {
+        if (response.body.status === 'success') {
+          this.editMedicineVis = false
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
           })
           this.getMedicineList()
         }

@@ -16,7 +16,7 @@
       <el-button plain style="float:right" @click="addVaccineVis=true">添加</el-button>
     </el-form>
 
-    <el-dialog title="新增疫苗" :visible.sync="addVaccineVis">
+      <el-dialog title="新增疫苗" :visible.sync="addVaccineVis">
         <el-form :model="vaccineAddInput">
           <el-form-item label="疫苗名称">
             <el-input v-model="vaccineAddInput.name" auto-complete="off" style="width:50%"></el-input>
