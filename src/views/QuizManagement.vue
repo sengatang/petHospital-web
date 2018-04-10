@@ -154,13 +154,13 @@ export default {
       })
     },
     quizDelete (item) {
-      this.$confirm('此操作将永久删除该疫苗信息, 是否继续?', '提示', {
+      this.$confirm('此操作将永久删除该试题, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         this.$http.delete('http://112.74.48.64:80/question/delete/' + item.id).then(response => {
-          this.getVaccineList()
+          this.getQuizList()
           this.$message({
             type: 'success',
             message: '删除成功!'
