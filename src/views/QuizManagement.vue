@@ -15,6 +15,42 @@
       <el-button plain style="float:right" @click="addQuizVis=true">添加</el-button>
     </el-form>
 
+    <el-dialog title="新增试题" :visible.sync="addQuizVis">
+        <el-form :model="quizAddInput">
+          <el-form-item label="题目">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizAddInput.askDescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="A选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizAddInput.adescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="B选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizAddInput.bdescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="C选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizAddInput.cdescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="D选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizAddInput.ddescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="答案">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizAddInput.answer" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="题目类型">
+            <el-input v-model="quizAddInput.questionType" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="用户类型">
+            <el-input v-model="quizAddInput.userType" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="所属类别">
+            <el-input v-model="quizAddInput.category" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="addQuizVis = false">取 消</el-button>
+          <el-button type="primary" @click="quizAdd">确 定</el-button>
+        </div>
+      </el-dialog>
+
     <el-table
       :data="quizList"
       stripe
@@ -82,7 +118,19 @@ export default {
   data: () => {
     return {
       quizList: [],
-      quizSearchInput: ''
+      quizSearchInput: '',
+      quizAddInput: {
+        askDescription: '',
+        adescription: '',
+        bdescription: '',
+        cdescription: '',
+        ddescription: '',
+        answer: '',
+        questionType: 0,
+        userType: 1,
+        category: 2
+      },
+      addQuizVis: false
     }
   },
   mounted: function () {
@@ -94,12 +142,11 @@ export default {
       this.$http.get('http://112.74.48.64:80/question/list').then(response => {
         if (response.body.status === 'success') {
           this.quizList = response.body.data
-          console.log(this.quizList)
         }
       })
     },
     quizSearch () {
-      this.$http.get('http://112.74.48.64:80/quiz/' + this.quizSearchInput).then(response => {
+      this.$http.get('http://112.74.48.64:80/question/' + this.quizSearchInput).then(response => {
         if (response.body.status === 'success') {
           this.quizList = []
           this.quizList.push(response.body.data)
@@ -112,7 +159,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$http.delete('http://112.74.48.64:80/quiz/delete/' + item.id).then(response => {
+        this.$http.delete('http://112.74.48.64:80/question/delete/' + item.id).then(response => {
           this.getVaccineList()
           this.$message({
             type: 'success',
@@ -124,6 +171,18 @@ export default {
           type: 'info',
           message: '已取消删除'
         })
+      })
+    },
+    quizAdd () {
+      this.$http.post('http://112.74.48.64:80/question/add', {askDescription: this.quizAddInput.askDescription, adescription: this.quizAddInput.adescription, bdescription: this.quizAddInput.bdescription, cdescription: this.quizAddInput.cdescription, ddescription: this.quizAddInput.ddescription, answer: this.quizAddInput.answer, userType: this.quizAddInput.userType, questionType: this.quizAddInput.questionType, category: {id: this.quizAddInput.category}}).then(response => {
+        if (response.body.status === 'success') {
+          this.addQuizVis = false
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
+          })
+          this.getQuizList()
+        }
       })
     }
   }
