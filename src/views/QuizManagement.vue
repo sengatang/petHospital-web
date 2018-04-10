@@ -15,10 +15,10 @@
       <el-button plain style="float:right" @click="addQuizVis=true">添加</el-button>
     </el-form>
 
-    <el-dialog title="新增试题" :visible.sync="addQuizVis">
+      <el-dialog title="新增试题" :visible.sync="addQuizVis">
         <el-form :model="quizAddInput">
           <el-form-item label="题目">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <el-input v-model="quizAddInput.askDescription" auto-complete="off" style="width:50%"></el-input>
+            <el-input type="textarea" v-model="quizAddInput.askDescription" auto-complete="off" style="width:50%"></el-input>
           </el-form-item>
           <el-form-item label="A选项">&nbsp;&nbsp;&nbsp;&nbsp;
             <el-input v-model="quizAddInput.adescription" auto-complete="off" style="width:50%"></el-input>
@@ -48,6 +48,42 @@
         <div slot="footer" class="dialog-footer">
           <el-button @click="addQuizVis = false">取 消</el-button>
           <el-button type="primary" @click="quizAdd">确 定</el-button>
+        </div>
+      </el-dialog>
+
+      <el-dialog title="修改试题" :visible.sync="editQuizVis">
+        <el-form :model="quizEditInput">
+          <el-form-item label="题目">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input  type="textarea" v-model="quizEditInput.askDescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="A选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizEditInput.adescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="B选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizEditInput.bdescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="C选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizEditInput.cdescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="D选项">&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizEditInput.ddescription" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="答案">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-input v-model="quizEditInput.answer" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="题目类型">
+            <el-input v-model="quizEditInput.questionType" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="用户类型">
+            <el-input v-model="quizEditInput.userType" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+          <el-form-item label="所属类别">
+            <el-input v-model="quizEditInput.category" auto-complete="off" style="width:50%"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="editQuizVis = false">取 消</el-button>
+          <el-button type="primary" @click="quizEditConfirm">确 定</el-button>
         </div>
       </el-dialog>
 
@@ -104,7 +140,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button @click="quizDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button  size="mini" plain type="primary" >编辑</el-button>
+          <el-button   @click="quizEdit(scope.row)" size="mini" plain type="primary" >编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -130,7 +166,20 @@ export default {
         userType: 1,
         category: 2
       },
-      addQuizVis: false
+      quizEditInput: {
+        askDescription: '',
+        adescription: '',
+        bdescription: '',
+        cdescription: '',
+        ddescription: '',
+        answer: '',
+        questionType: 0,
+        userType: 1,
+        category: 2,
+        id: 0
+      },
+      addQuizVis: false,
+      editQuizVis: false
     }
   },
   mounted: function () {
@@ -180,6 +229,32 @@ export default {
           this.$message({
             type: 'success',
             message: '添加成功!'
+          })
+          this.getQuizList()
+        }
+      })
+    },
+    quizEdit (item) {
+      console.log('item', item)
+      this.editQuizVis = true
+      this.quizEditInput.askDescription = item.askDescription
+      this.quizEditInput.adescription = item.adescription
+      this.quizEditInput.bdescription = item.bdescription
+      this.quizEditInput.cdescription = item.cdescription
+      this.quizEditInput.ddescription = item.ddescription
+      this.quizEditInput.answer = item.answer
+      this.quizEditInput.userType = item.userType
+      this.quizEditInput.questionType = item.questionType
+      this.quizEditInput.category = item.category.id
+      this.quizEditInput.id = item.id
+    },
+    quizEditConfirm () {
+      this.$http.put('http://112.74.48.64:80/question/edit', {id: this.quizEditInput.id, askDescription: this.quizEditInput.askDescription, adescription: this.quizEditInput.adescription, bdescription: this.quizEditInput.bdescription, cdescription: this.quizEditInput.cdescription, ddescription: this.quizEditInput.ddescription, answer: this.quizEditInput.answer, userType: this.quizEditInput.userType, questionType: this.quizEditInput.questionType, category: {id: this.quizEditInput.category}}).then(response => {
+        if (response.body.status === 'success') {
+          this.editQuizVis = false
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
           })
           this.getQuizList()
         }
