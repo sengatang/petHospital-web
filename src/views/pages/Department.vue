@@ -14,11 +14,7 @@
           <el-button type="primary" @click="departSearch" class="searchButton">查询</el-button>
           <el-button  @click="getDepartmentList" >清空</el-button>
         </el-form-item>
-<<<<<<< HEAD
-        <el-button  class="addButton" plain style="float:right" @click="addDepartVis=true">添加</el-button>
-=======
         <el-button plain style="float:right" @click="addDepartVis=true" class="addButton">添加</el-button>
->>>>>>> 67ba50bbec693c21c6f42d4c67f3354c9df0f789
       </el-form>
 
       <el-dialog title="新增科室" :visible.sync="addDepartVis">
