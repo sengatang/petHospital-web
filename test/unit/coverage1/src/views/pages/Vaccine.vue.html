@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/views/pages/Vaccine.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/views/pages/</a> Vaccine.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/39</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;div&gt;
+    &lt;el-card class="vaccine"&gt;
+      &lt;div slot="header" class="clearfix"&gt;
+      &lt;span&gt;疫苗管理&lt;/span&gt;
+      &lt;/div&gt;
+&nbsp;
+    &lt;el-form :inline="true"  class="demo-form-inline" style="padding:0 10% 0 0"&gt;
+      &lt;el-form-item label=""&gt;
+        &lt;el-input v-model="vaccineSearchInput" placeholder="请输入疫苗ID"&gt;&lt;/el-input&gt;
+      &lt;/el-form-item&gt;
+      &lt;el-form-item&gt;
+        &lt;el-button type="primary" @click="vaccineSearch" &gt;查询&lt;/el-button&gt;
+        &lt;el-button  @click="getVaccineList" &gt;清空&lt;/el-button&gt;
+      &lt;/el-form-item&gt;
+      &lt;el-button plain style="float:right" @click="addVaccineVis=true"&gt;添加&lt;/el-button&gt;
+    &lt;/el-form&gt;
+&nbsp;
+      &lt;el-dialog title="新增疫苗" :visible.sync="addVaccineVis"&gt;
+        &lt;el-form :model="vaccineAddInput"&gt;
+          &lt;el-form-item label="疫苗名称"&gt;
+            &lt;el-input v-model="vaccineAddInput.name" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="疫苗描述"&gt;
+            &lt;el-input v-model="vaccineAddInput.description" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="可用范围"&gt;
+            &lt;el-input v-model="vaccineAddInput.illness" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="有效期限"&gt;
+            &lt;el-date-picker
+              v-model="vaccineAddInput.date"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"&gt;
+            &lt;/el-date-picker&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="疫苗价格"&gt;
+            &lt;el-input-number v-model="vaccineAddInput.price" label="描述文字"&gt;&lt;/el-input-number&gt;
+          &lt;/el-form-item&gt;
+        &lt;/el-form&gt;
+        &lt;div slot="footer" class="dialog-footer"&gt;
+          &lt;el-button @click="addVaccineVis = false"&gt;取 消&lt;/el-button&gt;
+          &lt;el-button type="primary" @click="vaccineAdd"&gt;确 定&lt;/el-button&gt;
+        &lt;/div&gt;
+      &lt;/el-dialog&gt;
+&nbsp;
+&nbsp;
+       &lt;el-dialog title="修改疫苗信息" :visible.sync="editVaccineVis"&gt;
+        &lt;el-form :model="vaccineEditInput"&gt;
+          &lt;el-form-item label="疫苗名称"&gt;
+            &lt;el-input v-model="vaccineEditInput.name" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="疫苗描述"&gt;
+            &lt;el-input v-model="vaccineEditInput.description" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="可用范围"&gt;
+            &lt;el-input v-model="vaccineEditInput.illness" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="有效期限"&gt;
+            &lt;el-date-picker
+              v-model="vaccineEditInput.date"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"&gt;
+            &lt;/el-date-picker&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="疫苗价格"&gt;
+            &lt;el-input-number v-model="vaccineEditInput.price" label="描述文字"&gt;&lt;/el-input-number&gt;
+          &lt;/el-form-item&gt;
+        &lt;/el-form&gt;
+        &lt;div slot="footer" class="dialog-footer"&gt;
+          &lt;el-button @click="editVaccineVis = false"&gt;取 消&lt;/el-button&gt;
+          &lt;el-button type="primary" @click="vaccineEditConfirm"&gt;确 定&lt;/el-button&gt;
+        &lt;/div&gt;
+      &lt;/el-dialog&gt;
+  
+    &lt;el-table
+      :data="vaccineList"
+      stripe
+      max-height="560"
+      style="width: 100%"&gt;
+      &lt;el-table-column
+        prop="name"
+        label="疫苗名称"
+        width="180"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="productionDate"
+        label="生产日期"
+        width="180"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="expirationDate"
+        label="有效日期"
+        width="180"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="price"
+        label="价格／支"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="description"
+        label="适用范围"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        fixed="right"
+        label="操作"&gt;
+        &lt;template slot-scope="scope"&gt;
+          &lt;el-button @click="vaccineDelete(scope.row)"  size="mini" type="danger" plain&gt;删除&lt;/el-button&gt;
+          &lt;el-button  @click="vaccineEdit(scope.row)" size="mini" plain type="primary" &gt;编辑&lt;/el-button&gt;
+        &lt;/template&gt;
+      &lt;/el-table-column&gt;
+     &lt;/el-table&gt;
+&nbsp;
+&nbsp;
+    &lt;/el-card&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+export default {
+  name: 'vaccine',
+  data: () =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      vaccineList: [],
+      vaccineSearchInput: '',
+      addVaccineVis: false,
+      vaccineAddInput: {
+        name: '',
+        description: '',
+        price: 0,
+        productionDate: '',
+        date: [],
+        expirationDate: ''
+      },
+      editVaccineVis: false,
+      vaccineEditInput: {
+        name: '',
+        description: '',
+        price: 0,
+        productionDate: '',
+        date: [],
+        expirationDate: ''
+      }
+    }
+  },
+  mounted: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this.getVaccineList()</span>
+  },
+  methods: {
+    getVaccineList () {
+<span class="cstat-no" title="statement not covered" >      this.vaccineSearchInput = ''</span>
+<span class="cstat-no" title="statement not covered" >      this.$http.get('http://112.74.48.64:80/vaccine/list').then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.vaccineList = response.body.data</span>
+<span class="cstat-no" title="statement not covered" >          console.log(this.vaccineList)</span>
+        }
+      })
+    },
+    vaccineSearch () {
+<span class="cstat-no" title="statement not covered" >      this.$http.get('http://112.74.48.64:80/vaccine/' + this.vaccineSearchInput).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.vaccineList = []</span>
+<span class="cstat-no" title="statement not covered" >          this.vaccineList.push(response.body.data)</span>
+        }
+      })
+    },
+    vaccineDelete (item) {
+<span class="cstat-no" title="statement not covered" >      this.$confirm('此操作将永久删除该疫苗信息, 是否继续?', '提示', {</span>
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        this.$http.delete('http://112.74.48.64:80/vaccine/delete/' + item.id).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >          this.getVaccineList()</span>
+<span class="cstat-no" title="statement not covered" >          this.$message({</span>
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        this.$message({</span>
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
+    vaccineAdd () {
+<span class="cstat-no" title="statement not covered" >      this.vaccineAddInput.productionDate = this.vaccineAddInput.date[0]</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineAddInput.expirationDate = this.vaccineAddInput.date[1]</span>
+<span class="cstat-no" title="statement not covered" >      console.log(this.vaccineAddInput)</span>
+<span class="cstat-no" title="statement not covered" >      this.$http.post('http://112.74.48.64:80/vaccine/add', {name: this.vaccineAddInput.name, description: this.vaccineAddInput.description, price: this.vaccineAddInput.price, productionDate: this.vaccineAddInput.productionDate, expirationDate: this.vaccineAddInput.expirationDate}).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.addVaccineVis = false</span>
+<span class="cstat-no" title="statement not covered" >          this.$message({</span>
+            type: 'success',
+            message: '添加成功!'
+          })
+<span class="cstat-no" title="statement not covered" >          this.getVaccineList()</span>
+        }
+      })
+    },
+    vaccineEdit (item) {
+<span class="cstat-no" title="statement not covered" >      this.editVaccineVis = true</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.name = item.name</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.id = item.id</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.price = item.price</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.description = item.description</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.illness = item.illness</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.date[0] = item.productionDate</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.date[1] = item.expirationDate</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.productionDate = item.productionDate</span>
+<span class="cstat-no" title="statement not covered" >      this.vaccineEditInput.expirationDate = item.expirationDate</span>
+    },
+    vaccineEditConfirm () {
+<span class="cstat-no" title="statement not covered" >      this.$http.put('http://112.74.48.64:80/vaccine/edit', {id: this.vaccineEditInput.id, name: this.vaccineEditInput.name, description: this.vaccineEditInput.description, price: this.vaccineEditInput.price, productionDate: this.vaccineEditInput.date[0], expirationDate: this.vaccineEditInput.date[1]}).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.editVaccineVis = false</span>
+<span class="cstat-no" title="statement not covered" >          this.$message({</span>
+            type: 'success',
+            message: '修改成功!'
+          })
+<span class="cstat-no" title="statement not covered" >          this.getVaccineList()</span>
+        }
+        // console.log(this.vaccineEditInput)
+        // console.log(response)
+      })
+    }
+  }
+}
+&lt;/script&gt;
+&lt;style&gt;
+.el-card{
+  height: 860px;
+}
+.vaccine .el-range-editor.el-input__inner{
+  width: 50%;
+}
+&lt;/style&gt;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 12 2018 01:38:53 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

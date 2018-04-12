@@ -12,7 +12,7 @@
         <el-button type="primary" @click="quizSearch" >查询</el-button>
         <el-button  @click="getQuizList" >清空</el-button>
       </el-form-item>
-      <el-button plain style="float:right" @click="addQuizVis=true">添加</el-button>
+      <el-button plain style="float:right" @click="addQuizVis=true" class="addButton">添加</el-button>
     </el-form>
 
       <el-dialog title="新增试题" :visible.sync="addQuizVis">
@@ -140,7 +140,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button @click="quizDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button   @click="quizEdit(scope.row)" size="mini" plain type="primary" >编辑</el-button>
+          <el-button   @click="quizEdit(scope.row)" size="mini" plain type="primary" class="editButton">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -196,6 +196,7 @@ export default {
     },
     quizSearch () {
       this.$http.get('http://112.74.48.64:80/question/' + this.quizSearchInput).then(response => {
+        console.log(response)
         if (response.body.status === 'success') {
           this.quizList = []
           this.quizList.push(response.body.data)

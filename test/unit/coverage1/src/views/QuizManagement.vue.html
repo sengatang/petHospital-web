@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/views/QuizManagement.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/views/</a> QuizManagement.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.81% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">22.22% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.81% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;div&gt;
+    &lt;el-card&gt;
+      &lt;div slot="header" class="clearfix"&gt;
+      &lt;span&gt;试题管理&lt;/span&gt;
+      &lt;/div&gt;
+     &lt;el-form :inline="true"  class="demo-form-inline" style="padding:0 10% 0 0"&gt;
+      &lt;el-form-item label=""&gt;
+        &lt;el-input v-model="quizSearchInput" placeholder="请输入试题ID"&gt;&lt;/el-input&gt;
+      &lt;/el-form-item&gt;
+      &lt;el-form-item&gt;
+        &lt;el-button type="primary" @click="quizSearch" &gt;查询&lt;/el-button&gt;
+        &lt;el-button  @click="getQuizList" &gt;清空&lt;/el-button&gt;
+      &lt;/el-form-item&gt;
+      &lt;el-button plain style="float:right" @click="addQuizVis=true" class="addButton"&gt;添加&lt;/el-button&gt;
+    &lt;/el-form&gt;
+&nbsp;
+      &lt;el-dialog title="新增试题" :visible.sync="addQuizVis"&gt;
+        &lt;el-form :model="quizAddInput"&gt;
+          &lt;el-form-item label="题目"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input type="textarea" v-model="quizAddInput.askDescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="A选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizAddInput.adescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="B选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizAddInput.bdescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="C选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizAddInput.cdescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="D选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizAddInput.ddescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="答案"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizAddInput.answer" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="题目类型"&gt;
+            &lt;el-input v-model="quizAddInput.questionType" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="用户类型"&gt;
+            &lt;el-input v-model="quizAddInput.userType" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="所属类别"&gt;
+            &lt;el-input v-model="quizAddInput.category" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+        &lt;/el-form&gt;
+        &lt;div slot="footer" class="dialog-footer"&gt;
+          &lt;el-button @click="addQuizVis = false"&gt;取 消&lt;/el-button&gt;
+          &lt;el-button type="primary" @click="quizAdd"&gt;确 定&lt;/el-button&gt;
+        &lt;/div&gt;
+      &lt;/el-dialog&gt;
+&nbsp;
+      &lt;el-dialog title="修改试题" :visible.sync="editQuizVis"&gt;
+        &lt;el-form :model="quizEditInput"&gt;
+          &lt;el-form-item label="题目"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input  type="textarea" v-model="quizEditInput.askDescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="A选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizEditInput.adescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="B选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizEditInput.bdescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="C选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizEditInput.cdescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="D选项"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizEditInput.ddescription" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="答案"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+            &lt;el-input v-model="quizEditInput.answer" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="题目类型"&gt;
+            &lt;el-input v-model="quizEditInput.questionType" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="用户类型"&gt;
+            &lt;el-input v-model="quizEditInput.userType" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+          &lt;el-form-item label="所属类别"&gt;
+            &lt;el-input v-model="quizEditInput.category" auto-complete="off" style="width:50%"&gt;&lt;/el-input&gt;
+          &lt;/el-form-item&gt;
+        &lt;/el-form&gt;
+        &lt;div slot="footer" class="dialog-footer"&gt;
+          &lt;el-button @click="editQuizVis = false"&gt;取 消&lt;/el-button&gt;
+          &lt;el-button type="primary" @click="quizEditConfirm"&gt;确 定&lt;/el-button&gt;
+        &lt;/div&gt;
+      &lt;/el-dialog&gt;
+&nbsp;
+    &lt;el-table
+      :data="quizList"
+      stripe
+      max-height="560"
+      style="width: 100%"&gt;
+      &lt;el-table-column
+        prop="askDescription"
+        label="题目"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="adescription"
+        label="选项A"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="bdescription"
+        label="选项B"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="cdescription"
+        label="选项C"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="ddescription"
+        label="选项D"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="answer"
+        label="答案"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="questionType"
+        label="题目类型"
+        width=""&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="userType"
+        label="用户角色"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        prop="category"
+        label="类型"&gt;
+      &lt;/el-table-column&gt;
+      &lt;el-table-column
+        fixed="right"
+        label="操作"&gt;
+        &lt;template slot-scope="scope"&gt;
+          &lt;el-button @click="quizDelete(scope.row)"  size="mini" type="danger" plain&gt;删除&lt;/el-button&gt;
+          &lt;el-button   @click="quizEdit(scope.row)" size="mini" plain type="primary" class="editButton"&gt;编辑&lt;/el-button&gt;
+        &lt;/template&gt;
+      &lt;/el-table-column&gt;
+    &lt;/el-table&gt;
+    &lt;/el-card&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+export default {
+  name: 'quizManagement',
+  data: () =&gt; {
+    return {
+      quizList: [],
+      quizSearchInput: '',
+      quizAddInput: {
+        askDescription: '',
+        adescription: '',
+        bdescription: '',
+        cdescription: '',
+        ddescription: '',
+        answer: '',
+        questionType: 0,
+        userType: 1,
+        category: 2
+      },
+      quizEditInput: {
+        askDescription: '',
+        adescription: '',
+        bdescription: '',
+        cdescription: '',
+        ddescription: '',
+        answer: '',
+        questionType: 0,
+        userType: 1,
+        category: 2,
+        id: 0
+      },
+      addQuizVis: false,
+      editQuizVis: false
+    }
+  },
+  mounted: function () {
+    this.getQuizList()
+  },
+  methods: {
+    getQuizList () {
+      this.quizSearchInput = ''
+      this.$http.get('http://112.74.48.64:80/question/list').then(response =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.quizList = response.body.data</span>
+        }
+      })
+    },
+    quizSearch () {
+<span class="cstat-no" title="statement not covered" >      this.$http.get('http://112.74.48.64:80/question/' + this.quizSearchInput).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.quizList = []</span>
+<span class="cstat-no" title="statement not covered" >          this.quizList.push(response.body.data)</span>
+        }
+      })
+    },
+    quizDelete (item) {
+<span class="cstat-no" title="statement not covered" >      this.$confirm('此操作将永久删除该试题, 是否继续?', '提示', {</span>
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        this.$http.delete('http://112.74.48.64:80/question/delete/' + item.id).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >          this.getQuizList()</span>
+<span class="cstat-no" title="statement not covered" >          this.$message({</span>
+            type: 'success',
+            message: '删除成功!'
+          })
+        })
+      }).catch(() =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        this.$message({</span>
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
+    quizAdd () {
+<span class="cstat-no" title="statement not covered" >      this.$http.post('http://112.74.48.64:80/question/add', {askDescription: this.quizAddInput.askDescription, adescription: this.quizAddInput.adescription, bdescription: this.quizAddInput.bdescription, cdescription: this.quizAddInput.cdescription, ddescription: this.quizAddInput.ddescription, answer: this.quizAddInput.answer, userType: this.quizAddInput.userType, questionType: this.quizAddInput.questionType, category: {id: this.quizAddInput.category}}).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.addQuizVis = false</span>
+<span class="cstat-no" title="statement not covered" >          this.$message({</span>
+            type: 'success',
+            message: '添加成功!'
+          })
+<span class="cstat-no" title="statement not covered" >          this.getQuizList()</span>
+        }
+      })
+    },
+    quizEdit (item) {
+<span class="cstat-no" title="statement not covered" >      console.log('item', item)</span>
+<span class="cstat-no" title="statement not covered" >      this.editQuizVis = true</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.askDescription = item.askDescription</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.adescription = item.adescription</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.bdescription = item.bdescription</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.cdescription = item.cdescription</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.ddescription = item.ddescription</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.answer = item.answer</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.userType = item.userType</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.questionType = item.questionType</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.category = item.category.id</span>
+<span class="cstat-no" title="statement not covered" >      this.quizEditInput.id = item.id</span>
+    },
+    quizEditConfirm () {
+<span class="cstat-no" title="statement not covered" >      this.$http.put('http://112.74.48.64:80/question/edit', {id: this.quizEditInput.id, askDescription: this.quizEditInput.askDescription, adescription: this.quizEditInput.adescription, bdescription: this.quizEditInput.bdescription, cdescription: this.quizEditInput.cdescription, ddescription: this.quizEditInput.ddescription, answer: this.quizEditInput.answer, userType: this.quizEditInput.userType, questionType: this.quizEditInput.questionType, category: {id: this.quizEditInput.category}}).then(response =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (response.body.status === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >          this.editQuizVis = false</span>
+<span class="cstat-no" title="statement not covered" >          this.$message({</span>
+            type: 'success',
+            message: '修改成功!'
+          })
+<span class="cstat-no" title="statement not covered" >          this.getQuizList()</span>
+        }
+      })
+    }
+  }
+}
+&lt;/script&gt;
+&lt;style&gt;
+.el-card{
+  height: 860px;
+}
+&lt;/style&gt;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 12 2018 01:38:53 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

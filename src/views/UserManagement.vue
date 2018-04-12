@@ -14,7 +14,7 @@
           <el-button type="primary" @click="userSearch" >查询</el-button>
           <el-button  @click="getUserList" >清空</el-button>
         </el-form-item>
-        <el-button plain style="float:right" @click="addUserVis=true">添加</el-button>
+        <el-button plain style="float:right" @click="addUserVis=true" class="addButton">添加</el-button>
       </el-form>
 
       <el-dialog title="新增用户" :visible.sync="addUserVis">
@@ -122,7 +122,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button @click="userDelete(scope.row)"  size="mini" type="danger" plain>删除</el-button>
-          <el-button  @click="userEdit(scope.row)"  size="mini" plain type="primary" >编辑</el-button>
+          <el-button  @click="userEdit(scope.row)"  size="mini" plain type="primary" class="editButton">编辑</el-button>
         </template>
       </el-table-column>
      </el-table>
