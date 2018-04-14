@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/components/Breadcrumb.vue</title>
+    <title>Code coverage report for src/views/pages/Login.vue</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">src/components/</a> Breadcrumb.vue
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/views/pages/</a> Login.vue
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>0/2</span>
       </div>
     </div>
   </div>
@@ -77,7 +77,35 @@
 32
 33
 34
-35</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -97,55 +125,60 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;ol class="breadcrumb"&gt;
-    &lt;li class="breadcrumb-item" v-for="(item, index) in list"&gt;
-      &lt;span class="active" v-if="isLast(index)"&gt;{{ showName(item) }}&lt;/span&gt;
-      &lt;router-link :to="item" v-else&gt;{{ showName(item) }}&lt;/router-link&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
+  &lt;el-container&gt;
+    &lt;el-main&gt;
+      &lt;el-card class="box-card"&gt;
+        &lt;el-row&gt;
+          &lt;el-col :span="12"&gt;
+            &lt;el-form ref="form" :model="form" label-width="80px"&gt;
+              &lt;el-form-item&gt;
+                &lt;h1&gt;Login&lt;/h1&gt;
+              &lt;/el-form-item&gt;
+              &lt;el-form-item label="用户名"&gt;
+                &lt;el-input v-model="form.name"&gt;&lt;/el-input&gt;
+              &lt;/el-form-item&gt;
+              &lt;el-form-item label="密码"&gt;
+                &lt;el-input v-model="form.password"&gt;&lt;/el-input&gt;
+              &lt;/el-form-item&gt;
+              &lt;el-form-item&gt;
+                &lt;el-button  type="primary" @click="onSubmit"&gt;登陆&lt;/el-button&gt;
+                &lt;el-button&gt;忘记密码&lt;/el-button&gt;
+                &lt;/el-form-item&gt;
+            &lt;/el-form&gt;
+          &lt;/el-col&gt;
+        &lt;/el-row&gt;
+      &lt;/el-card&gt;
+    &lt;/el-main&gt;
+  &lt;/el-container&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
 export default {
-  props: {
-    list: {
-      type: Array,
-      required: true,
-      default: () =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >[]</span></span>
+  name: 'Login',
+  data () {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      form: {
+        name: '',
+        password: ''
+      }
     }
   },
   methods: {
-    isLast (index) {
-<span class="cstat-no" title="statement not covered" >      return index === this.list.length - 1</span>
-    },
-    showName (item) {
-<span class="cstat-no" title="statement not covered" >      if (item.meta &amp;&amp; item.meta.label) {</span>
-<span class="cstat-no" title="statement not covered" >        item = item.meta &amp;&amp; item.meta.label</span>
-      }
-<span class="cstat-no" title="statement not covered" >      if (item.name) {</span>
-<span class="cstat-no" title="statement not covered" >        item = item.name</span>
-      }
-<span class="cstat-no" title="statement not covered" >      return item</span>
+    onSubmit () {
+<span class="cstat-no" title="statement not covered" >      console.log('submit!')</span>
     }
   }
 }
-&lt;/script&gt;
-&nbsp;</pre></td></tr>
+&lt;/script&gt;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
@@ -154,7 +187,7 @@ export default {
   generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 12 2018 09:24:04 GMT+0800 (CST)
 </div>
 </div>
-<script src="../../prettify.js"></script>
+<script src="../../../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -162,6 +195,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../../sorter.js"></script>
+<script src="../../../sorter.js"></script>
 </body>
 </html>

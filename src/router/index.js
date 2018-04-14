@@ -21,6 +21,7 @@ import CasesManagement from '@/views/CasesManagement'
 import DiseaseManagement from '@/views/DiseaseManagement'
 import QuizManagement from '@/views/QuizManagement'
 import UserManagement from '@/views/UserManagement'
+import Login from '@/views/pages/Login'
 // Views - UI Kits
 Vue.use(Router)
 
@@ -31,7 +32,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/pages/login',
       name: 'Home',
       component: Full,
       children: [
@@ -112,6 +113,20 @@ export default new Router({
               name: '药品管理',
               component: Medicine
             }]
+        }
+      ]
+    },
+    {
+      path: '/pages',
+      name: 'Pages',
+      component: {
+        render (c) { return c('router-view') }
+      },
+      children: [
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login
         }
       ]
     }
