@@ -35,8 +35,7 @@ export default {
   },
   mounted: function () {
     var that = this
-    console.log(that.nav)
-    if (this.$route.params.user_type === 0) {
+    if (this.$route.query.index === 0) {
       that.nav.items = [
         {
           name: 'Dashboard',
@@ -102,7 +101,7 @@ export default {
         }
       )
     }
-    if (this.$route.params.user_type > 0) {
+    if (this.$route.query.index > 0) {
       that.nav.items = [
         {
           name: 'Dashboard',

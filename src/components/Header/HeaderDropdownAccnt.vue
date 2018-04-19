@@ -15,7 +15,7 @@
         <b-dropdown-item><i class="fa fa-file"></i> Projects<b-badge variant="primary">{{itemsCount}}</b-badge></b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item><i class="fa fa-shield"></i> Lock Account</b-dropdown-item>
-        <b-dropdown-item><i class="fa fa-lock"></i> Logout</b-dropdown-item>
+        <b-dropdown-item @click="logout"><i class="fa fa-lock"></i> Logout</b-dropdown-item>
       </b-nav-item-dropdown>
 </template>
 <script>
@@ -23,6 +23,11 @@
     name: 'header-dropdown-accnt',
     data: () => {
       return { itemsCount: 42 }
+    },
+    methods: {
+      logout () {
+        this.$router.replace({path: '/'})
+      }
     }
   }
 </script>
