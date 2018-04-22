@@ -25,6 +25,21 @@
         <div id="filePicker">select files</div>
         <input type="button" id="btn" value="upload">
       </div> -->
+      <el-upload
+  class="upload-demo"
+  ref="upload"
+  action="http://112.74.48.64:80/multimedia/uploader"
+  :on-preview="handlePreview"
+  :on-remove="handleRemove"
+  :on-error="errorFunc"
+  :file-list="fileList"
+  :auto-upload="false"
+  :before-upload="beforeImgUpload"  
+  :data="upLoadData">
+  <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+  <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+</el-upload>
       <el-form :model="caseAddInput">
         <el-form-item label="病例描述">
           <el-input v-model="caseAddInput.name" auto-complete="off" style="width:50%"></el-input>
@@ -199,6 +214,13 @@ export default {
   name: 'casesManagement',
   data: () => {
     return {
+      fileList: [],
+      upLoadData: {
+        caseId: '1',
+        img_base64: '',
+        casetype: '1'
+      },
+      importFileUrl: 'http://112.74.48.64:80/multimedia/uploader',
       caseList: [],
       caseDetailVis: false,
       selectedRow: {},
@@ -248,6 +270,30 @@ export default {
     this.getCategoryList()
   },
   methods: {
+    submitUpload () {
+      this.$refs.upload.submit()
+    },
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    errorFunc (err, file, fileList) {
+      console.log(err, file, fileList)
+      console.log('test', file)
+    },
+    beforeImgUpload (file) {
+      // console.log('rerqeqre', file)
+      // console.log('this', this)
+      var self = this
+      var reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = function () {
+        self.upLoadData.img_base64 = this.result
+        console.log('tym', self.upLoadData)
+      }
+    },
     getCaseList () {
       this.$http.get('http://112.74.48.64:80/illness/list').then(response => {
         if (response.body.status === 'success') {
@@ -366,19 +412,6 @@ export default {
           this.getCaseList()
         }
       })
-    },
-    startUpload (e) {
-      // file upload start event
-      console.log(e)
-    },
-    finishUpload (e) {
-      // file upload finish event
-      console.log(e)
-    },
-    progress (e) {
-      // file upload progress
-      // returns false if progress is not computable
-      console.log(e)
     }
   }
 }
