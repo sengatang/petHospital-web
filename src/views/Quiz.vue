@@ -29,10 +29,10 @@
                       style="width: 100%; padding: 0 auto"
                       :key="item.id">
           <p>{{index+1+"."+"  "}}{{ item.askDescription}}</p>
-          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.adescription" id="item1" @change="changeResult(item.askDescription,item.adescription,item.answer)" style="padding: 0 20px 0 0"><label for="item1">{{ item.adescription}}</label>
-          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.bdescription" id="item2" @change="changeResult(item.askDescription,item.bdescription,item.answer)" style="padding: 0 20px 0 0"><label for="item2">{{ item.bdescription}}</label>
-          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.cdescription" id="item3" @change="changeResult(item.askDescription,item.cdescription,item.answer)"><label for="item3">{{ item.cdescription}}</label>
-          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.ddescription" id="item4" @change="changeResult(item.askDescription,item.ddescription,item.answer)"><label for="item4">{{ item.ddescription}}</label>
+          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.adescription" id="item1" @change="changeResult(item.askDescription,item.adescription,item.answer)" style="width: 15px; height: 15px;"><label for="item1" style="padding-right:20px">{{ item.adescription}}</label>
+          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.bdescription" id="item2" @change="changeResult(item.askDescription,item.bdescription,item.answer)" style="width: 15px; height: 15px;"><label for="item2" style="padding-right:20px">{{ item.bdescription}}</label>
+          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.cdescription" id="item3" @change="changeResult(item.askDescription,item.cdescription,item.answer)" style="width: 15px; height: 15px;"><label for="item3" style="padding-right:20px"> {{ item.cdescription}}</label>
+          <input type="radio" :name="item.id" :data-ask="item.askDescription" :data-answer="item.answer" :value="item.ddescription" id="item4" @change="changeResult(item.askDescription,item.ddescription,item.answer)" style="width: 15px; height: 15px;"><label for="item4" style="padding-right:20px">{{ item.ddescription}}</label>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="quizCheck=true">提交</el-button>
