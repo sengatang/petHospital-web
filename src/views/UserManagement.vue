@@ -233,10 +233,10 @@ export default {
       }
     },
     userSearch () {
-      this.$http.get('http://112.74.48.64:80/user/' + this.userSearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/user/search', {name: this.userSearchInput}).then(response => {
         if (response.body.status === 'success') {
           this.userList = []
-          this.userList.push(response.body.data)
+          this.userList = response.body.data
         }
       })
     },
