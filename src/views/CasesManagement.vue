@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="casesManagement">
     <el-card>
       <div slot="header" class="clearfix">
       <span>病例管理</span>
@@ -25,21 +25,8 @@
         <div id="filePicker">select files</div>
         <input type="button" id="btn" value="upload">
       </div> -->
-      <el-upload
-  class="upload-demo"
-  ref="upload"
-  action="http://112.74.48.64:80/multimedia/uploader"
-  :on-preview="handlePreview"
-  :on-remove="handleRemove"
-  :on-error="errorFunc"
-  :file-list="fileList"
-  :auto-upload="false"
-  :before-upload="beforeImgUpload"  
-  :data="upLoadData">
-  <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-  <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-</el-upload>
+      <el-tabs v-model="activeName">
+    <el-tab-pane label="基础信息" name="first">
       <el-form :model="caseAddInput">
         <el-form-item label="病例描述">
           <el-input v-model="caseAddInput.name" auto-complete="off" style="width:50%"></el-input>
@@ -83,21 +70,77 @@
             </el-option>
           </el-select>
         </el-form-item>
+        <el-button @click="addCasetVis = false">取 消</el-button>
+        <el-button type="primary" @click="caseAdd">下一步</el-button>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <!-- <div slot="footer" class="dialog-footer">
         <el-button @click="addCasetVis = false">取 消</el-button>
         <el-button type="primary" @click="caseAdd">确 定</el-button>
-      </div>
+      </div> -->
+    </el-tab-pane>
+    <el-tab-pane label="上传图片" name="second">
+          <!-- <el-select v-model="selectedCaseType" placeholder="请选择图片所属阶段">
+            <el-option
+              v-for="(value, key, index) in chooseCaseType"
+              :key="value"
+              :label="key"
+              :value="value">
+            </el-option>
+          </el-select> -->
+      <el-upload
+        class="upload-demo"
+        ref="uploadImg"
+        action="http://112.74.48.64:80/multimedia/uploader"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :on-error="errorFunc"
+        :file-list="fileList"
+        :auto-upload="false"
+        :before-upload="beforeImgUpload"  
+        :data="upLoadData">
+        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUploadImg">上传到服务器</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+    </el-tab-pane>
+    <el-tab-pane label="上传视频" name="third">
+      <el-upload
+        class="upload-demo"
+        ref="uploadVideo"
+        action="http://112.74.48.64:80/multimedia/uploaderVideo"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :on-error="errorFunc"
+        :file-list="fileList"
+        :auto-upload="false"
+        :before-upload="beforeImgUpload"  
+        :data="upLoadData">
+        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUploadVideo">上传到服务器</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传mp4文件，且不超过500kb</div>
+      </el-upload>
+    </el-tab-pane>
+  </el-tabs>
+      
+      
     </el-dialog>
 
     <el-dialog title="修改" :visible.sync="editCaseVis">
-      <!-- <fileupload target="http://112.74.48.64:80/multimedia/uploader" action="POST" v-on:progress="progress" v-on:start="startUpload" v-on:finish="finishUpload"></fileupload> -->
-       <!-- <div id="uploader-demo">
-        <div id="fileList" class="uploader-list"></div>
-        <div id="upInfo" ></div>
-        <div id="filePicker">select files</div>
-        <input type="button" id="btn" value="upload">
-      </div> -->
+      <!-- <el-upload
+        class="upload-demo"
+        ref="upload"
+        action="http://112.74.48.64:80/multimedia/uploaderVideo"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :on-error="errorFunc"
+        :file-list="fileList"
+        :auto-upload="false"
+        :before-upload="beforeImgUpload"  
+        :data="upLoadData">
+        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload> -->
       <el-form :model="caseEditInput">
         <el-form-item label="病例描述">
           <el-input v-model="caseEditInput.name" auto-complete="off" style="width:50%"></el-input>
@@ -196,31 +239,57 @@
       title="病例详情"
       :visible.sync="caseDetailVis"
       width="50%"
-      center
-      style="height: 500px">
-      <div v-for="(value, key, index) in selectedRowMapping">
-        <div class="caseDetailEach" style="width: 33%">
-          <span class="caseDetailTitle">{{key}}</span>
-          <span class="caseDetailContent">{{selectedRow[value]}}</span>
-        </div>
-      </div>
+      center>
+      <el-tabs v-model="activeName">
+        <el-tab-pane label="基本信息" name="first">
+          <div v-for="(value, key, index) in selectedRowMapping">
+            <div class="caseDetailEach" style="width: 33%">
+              <span class="caseDetailTitle">{{key}}</span>
+              <span class="caseDetailContent">{{selectedRow[value]}}</span>
+            </div>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="图片展示" name="second">
+         
+          <div class="block">
+            <el-carousel trigger="click" height="300px" type="card">
+              <el-carousel-item v-for="item in selectedRow.multimedias" :key="item.id">
+                  <img :src="'http://112.74.48.64'+item.url" v-show="showImage(item)"><img>
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="视频展示" name="third">
+          <div  v-for="item in selectedRow.multimedias" :key="item.id" v-show="!showImage(item)">
+            <div> 
+              <h3>{{item.name}}</h3>
+              <video :src="'http://112.74.48.64'+item.url"  controls="controls"></video>
+            </div>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </el-dialog>
     </el-card>
   </div>
 </template>
 
 <script>
+import 'video.js/dist/video-js.css'
+import { videoPlayer } from 'vue-video-player'
 export default {
   name: 'casesManagement',
+  components: {
+    videoPlayer
+  },
   data: () => {
     return {
       fileList: [],
       upLoadData: {
         caseId: '1',
         img_base64: '',
-        casetype: '1'
+        caseType: '1'
       },
-      importFileUrl: 'http://112.74.48.64:80/multimedia/uploader',
+      activeName: 'first',
       caseList: [],
       caseDetailVis: false,
       selectedRow: {},
@@ -228,7 +297,7 @@ export default {
         '病例编号': 'id',
         '病情描述': 'name',
         '病情详情': 'diseaseDescription',
-        '所属类别': 'category',
+        '所属类别': 'category.name',
         '治疗过程': 'process',
         '诊断结果': 'result',
         '治疗方法': 'treatment'
@@ -255,12 +324,31 @@ export default {
         medicines: 1,
         vaccines: 1
       },
+      chooseCaseType: {
+        '病例描述': 1,
+        '病情描述': 2,
+        '治疗过程': 3,
+        '治疗方法': 4
+      },
+      selectedCaseType: '',
       medicineList: [],
       selectedMedicine: [],
       vaccineList: [],
       selectedVaccine: [],
       categoryList: [],
-      selectedCategory: []
+      selectedCategory: [],
+      playerOptions: {
+        // videojs options
+        muted: true,
+        language: 'en',
+        playbackRates: [0.7, 1.0, 1.5, 2.0],
+        sources: [{
+          type: 'video/mp4',
+          src: ''
+        }],
+        poster: '',
+        videoInfoVis: false
+      }
     }
   },
   mounted: function () {
@@ -270,8 +358,25 @@ export default {
     this.getCategoryList()
   },
   methods: {
-    submitUpload () {
-      this.$refs.upload.submit()
+    showImage (item) {
+      if (item.type === 0) {
+        return true
+      } else {
+        // console.log('src', this.playerOptions.sources.src)
+        // this.playerOptions.sources.src = 'http://112.74.48.64' + item.url
+        return false
+      }
+    },
+    showVideo (item) {
+      if (item.type === 1) {
+        this.videoInfoVis = true
+      }
+    },
+    submitUploadImg () {
+      this.$refs.uploadImg.submit()
+    },
+    submitUploadVideo () {
+      this.$refs.uploadVideo.submit()
     },
     handleRemove (file, fileList) {
       console.log(file, fileList)
@@ -291,6 +396,8 @@ export default {
       reader.readAsDataURL(file)
       reader.onload = function () {
         self.upLoadData.img_base64 = this.result
+        self.upLoadData.caseId = this.upLoadData.caseId.toString()
+        self.upLoadData.caseType = '2'
         console.log('tym', self.upLoadData)
       }
     },
@@ -337,13 +444,12 @@ export default {
       for (let i = 0; i < this.selectedVaccine.length; i++) {
         finalSelectedVaccine.push({'id': this.selectedVaccine[i]})
       }
-      // console.log(finalSelectedMedicine)
-      // console.log(finalSelectedVaccine)
-      // console.log(finalSelectedCategory)
       this.$http.post('http://112.74.48.64:80/illness/add', {name: this.caseAddInput.name, diseaseDescription: this.caseAddInput.diseaseDescription, process: this.caseAddInput.process, treatment: this.caseAddInput.treatment, category: {id: this.selectedCategory}, medicines: finalSelectedMedicine, vaccines: finalSelectedVaccine}).then(response => {
         console.log(response)
+        this.activeName = 'second'
+        this.upLoadData.caseId = response.body.data.id
         if (response.body.status === 'success') {
-          this.addCaseVis = false
+          // this.addCaseVis = false
           this.$message({
             type: 'success',
             message: '添加成功!'
@@ -418,5 +524,23 @@ export default {
 <style>
 .el-card{
   height: 860px;
+}
+/* .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
+
+.el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+} */
+.casesManagement .el-dialog--center .el-dialog__body {
+  height:650px;
 }
 </style>

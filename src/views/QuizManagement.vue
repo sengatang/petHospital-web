@@ -35,15 +35,16 @@
           <el-form-item label="答案">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <el-input v-model="quizAddInput.answer" auto-complete="off" style="width:50%"></el-input>
           </el-form-item>
-          <el-form-item label="题目类型">
-            <el-input v-model="quizAddInput.questionType" auto-complete="off" style="width:50%"></el-input>
-          </el-form-item>
-          <el-form-item label="用户类型">
-            <el-input v-model="quizAddInput.userType" auto-complete="off" style="width:50%"></el-input>
-          </el-form-item>
-          <el-form-item label="所属类别">
-            <el-input v-model="quizAddInput.category" auto-complete="off" style="width:50%"></el-input>
-          </el-form-item>
+           <el-form-item label="所属病种">
+          <el-select v-model="selectedCategory" placeholder="请选择">
+            <el-option
+              v-for="item in categoryList"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addQuizVis = false">取 消</el-button>
@@ -71,15 +72,16 @@
           <el-form-item label="答案">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <el-input v-model="quizEditInput.answer" auto-complete="off" style="width:50%"></el-input>
           </el-form-item>
-          <el-form-item label="题目类型">
-            <el-input v-model="quizEditInput.questionType" auto-complete="off" style="width:50%"></el-input>
-          </el-form-item>
-          <el-form-item label="用户类型">
-            <el-input v-model="quizEditInput.userType" auto-complete="off" style="width:50%"></el-input>
-          </el-form-item>
-          <el-form-item label="所属类别">
-            <el-input v-model="quizEditInput.category" auto-complete="off" style="width:50%"></el-input>
-          </el-form-item>
+         <el-form-item label="所属病种">
+          <el-select v-model="selectedCategory" placeholder="请选择">
+            <el-option
+              v-for="item in categoryList"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="editQuizVis = false">取 消</el-button>
@@ -123,16 +125,7 @@
         width="">
       </el-table-column>
       <el-table-column
-        prop="questionType"
-        label="题目类型"
-        width="">
-      </el-table-column>
-      <el-table-column
-        prop="userType"
-        label="用户角色">
-      </el-table-column>
-      <el-table-column
-        prop="category"
+        prop="category.name"
         label="类型">
       </el-table-column>
       <el-table-column
@@ -179,11 +172,14 @@ export default {
         id: 0
       },
       addQuizVis: false,
-      editQuizVis: false
+      editQuizVis: false,
+      categoryList: [],
+      selectedCategory: []
     }
   },
   mounted: function () {
     this.getQuizList()
+    this.getCategoryList()
   },
   methods: {
     getQuizList () {
@@ -194,12 +190,18 @@ export default {
         }
       })
     },
+    getCategoryList () {
+      this.$http.get('http://112.74.48.64:80/category/list').then(response => {
+        if (response.body.status === 'success') {
+          this.categoryList = response.body.data
+        }
+      })
+    },
     quizSearch () {
-      this.$http.get('http://112.74.48.64:80/question/' + this.quizSearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/question/search', {askDescription: this.quizSearchInput}).then(response => {
         console.log(response)
         if (response.body.status === 'success') {
-          this.quizList = []
-          this.quizList.push(response.body.data)
+          this.quizList = response.body.data
         }
       })
     },
@@ -224,7 +226,7 @@ export default {
       })
     },
     quizAdd () {
-      this.$http.post('http://112.74.48.64:80/question/add', {askDescription: this.quizAddInput.askDescription, adescription: this.quizAddInput.adescription, bdescription: this.quizAddInput.bdescription, cdescription: this.quizAddInput.cdescription, ddescription: this.quizAddInput.ddescription, answer: this.quizAddInput.answer, userType: this.quizAddInput.userType, questionType: this.quizAddInput.questionType, category: {id: this.quizAddInput.category}}).then(response => {
+      this.$http.post('http://112.74.48.64:80/question/add', {askDescription: this.quizAddInput.askDescription, adescription: this.quizAddInput.adescription, bdescription: this.quizAddInput.bdescription, cdescription: this.quizAddInput.cdescription, ddescription: this.quizAddInput.ddescription, answer: this.quizAddInput.answer, userType: this.quizAddInput.userType, questionType: this.quizAddInput.questionType, category: {id: this.selectedCategory}}).then(response => {
         if (response.body.status === 'success') {
           this.addQuizVis = false
           this.$message({
@@ -250,7 +252,8 @@ export default {
       this.quizEditInput.id = item.id
     },
     quizEditConfirm () {
-      this.$http.put('http://112.74.48.64:80/question/edit', {id: this.quizEditInput.id, askDescription: this.quizEditInput.askDescription, adescription: this.quizEditInput.adescription, bdescription: this.quizEditInput.bdescription, cdescription: this.quizEditInput.cdescription, ddescription: this.quizEditInput.ddescription, answer: this.quizEditInput.answer, userType: this.quizEditInput.userType, questionType: this.quizEditInput.questionType, category: {id: this.quizEditInput.category}}).then(response => {
+      this.$http.put('http://112.74.48.64:80/question/edit', {id: this.quizEditInput.id, askDescription: this.quizEditInput.askDescription, adescription: this.quizEditInput.adescription, bdescription: this.quizEditInput.bdescription, cdescription: this.quizEditInput.cdescription, ddescription: this.quizEditInput.ddescription, answer: this.quizEditInput.answer, userType: this.quizEditInput.userType, questionType: this.quizEditInput.questionType, category: {id: this.selectedCategory}}).then(response => {
+        console.log(response)
         if (response.body.status === 'success') {
           this.editQuizVis = false
           this.$message({
