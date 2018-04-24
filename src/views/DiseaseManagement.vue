@@ -183,10 +183,9 @@ export default {
       })
     },
     categorySearch () {
-      this.$http.get('http://112.74.48.64:80/category/' + this.categorySearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/category/search', {name: this.categorySearchInput}).then(response => {
         if (response.body.status === 'success') {
-          this.categoryList = []
-          this.categoryList.push(response.body.data)
+          this.categoryList = response.body.data
         }
       })
     },
