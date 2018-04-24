@@ -353,10 +353,9 @@ export default {
       })
     },
     caseSearch () {
-      this.$http.get('http://112.74.48.64:80/illness/' + this.caseSearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/illness/search', {name: this.caseSearchInput}).then(response => {
         if (response.body.status === 'success') {
-          this.caseList = []
-          this.caseList.push(response.body.data)
+          this.caseList = response.body.data
         }
       })
     },
