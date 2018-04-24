@@ -157,10 +157,9 @@ export default {
       })
     },
     medicineSearch () {
-      this.$http.get('http://112.74.48.64:80/medicine/' + this.medicineSearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/medicine/search', {name: this.medicineSearchInput}).then(response => {
         if (response.body.status === 'success') {
-          this.medicineList = []
-          this.medicineList.push(response.body.data)
+          this.medicineList = response.body.data
         }
       })
     },
