@@ -134,11 +134,12 @@ export default {
       })
     },
     departSearch () {
-      this.$http.get('http://112.74.48.64:80/department/' + this.departSearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/department/search', {name: this.departSearchInput}).then(response => {
         if (response.body.status === 'success') {
           this.departList = []
-          this.departList.push(response.body.data)
+          this.departList = response.body.data
         }
+        console.log(response)
       })
     },
     departAdd () {
