@@ -156,15 +156,13 @@ export default {
       this.$http.get('http://112.74.48.64:80/vaccine/list').then(response => {
         if (response.body.status === 'success') {
           this.vaccineList = response.body.data
-          console.log(this.vaccineList)
         }
       })
     },
     vaccineSearch () {
-      this.$http.get('http://112.74.48.64:80/vaccine/' + this.vaccineSearchInput).then(response => {
+      this.$http.post('http://112.74.48.64:80/vaccine/search', {name: this.vaccineSearchInput}).then(response => {
         if (response.body.status === 'success') {
-          this.vaccineList = []
-          this.vaccineList.push(response.body.data)
+          this.vaccineList = response.body.data
         }
       })
     },
