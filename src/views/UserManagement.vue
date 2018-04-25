@@ -153,6 +153,10 @@ export default {
           {
             value: 3,
             label: '助理'
+          },
+          {
+            value: 0,
+            label: '实习生'
           }
         ],
         selectRole: '',
@@ -188,6 +192,10 @@ export default {
           {
             value: 3,
             label: '助理'
+          },
+          {
+            value: 0,
+            label: '实习生'
           }
         ],
         selectRole: '',
@@ -230,6 +238,8 @@ export default {
         return '执业兽医师'
       } else if (item === 3) {
         return '助理'
+      } else if (item === 0) {
+        return '实习生'
       }
     },
     userSearch () {
