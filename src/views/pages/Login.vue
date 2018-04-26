@@ -2,7 +2,7 @@
   <el-container class="login">  
     <el-main >
         <div class="center" >
-          <span style="font-size:60px; color:#5d626b">Pet Hospitial</span><br>
+          <span style="font-size:60px; color:white">虚拟宠物医院</span><br>
           <span style="font-size:15px; color:#959faf">Welcome to pet hospital online learning system | Powered by G13</span>
         </div>
         <div class="center-in-center">
@@ -35,8 +35,8 @@ html, body {
 .login{
     /* background-image: linear-gradient(45deg, #7A88FF, #7AFFAF); */
     /* background-image: radial-gradient(circle,#99CCCC, #7171B7); */
-    /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
     /* background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%); */
     /* background-image: linear-gradient(to right, #243949 0%, #517fa4 100%); */
 }

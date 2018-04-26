@@ -1,14 +1,15 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
-  <div>
+  <div class='quiz'>
     <el-card>
       <div slot="header" class="clearfix">
         <span>考试</span>
       </div>
-
-      <el-form :inline="true"  class="demo-form-inline" style="padding:0 10% 0 0">
-        <el-form-item label="考试时间">
+<span style="border-left:3px solid #409EFF;padding-left:5px;">您的考试考试时间为:<em>02:00:00</em></span>
+      <el-form :inline="true"  class="demo-form-inline" style="padding:0 10% 0 0;margin-top: 30px;">
+        <!-- <el-form-item label="考试时间">
           <el-input v-model="quizTimeInput" placeholder="请输入考试时间：eg.02:00:00"></el-input>
-        </el-form-item>
+        </el-form-item> -->
+        
         <el-form-item label="考试病种">
         <el-select v-model="quizTypeInput" placeholder="请选择考试病种">
           <el-option
@@ -128,7 +129,7 @@
   }
 </script>
 <style>
-  .el-card{
+.quiz .el-card{
     height: 5000px;
   }
 </style>

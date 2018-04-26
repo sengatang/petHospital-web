@@ -156,7 +156,7 @@ export default {
           },
           {
             value: 0,
-            label: '实习生'
+            label: '管理员'
           }
         ],
         selectRole: '',
@@ -195,7 +195,7 @@ export default {
           },
           {
             value: 0,
-            label: '实习生'
+            label: '管理员'
           }
         ],
         selectRole: '',
@@ -239,7 +239,7 @@ export default {
       } else if (item === 3) {
         return '助理'
       } else if (item === 0) {
-        return '实习生'
+        return '管理员'
       }
     },
     userSearch () {
@@ -272,7 +272,7 @@ export default {
     },
     userAdd () {
       console.log(this.userAddInput)
-      this.$http.post('http://112.74.48.64:80/user/add', {name: this.userAddInput.name, password: this.userAddInput.password, role: this.userAddInput.selectRole, status: this.userAddInput.status, department: {id: this.userAddInput.selectDepart}}).then(response => {
+      this.$http.post('http://112.74.48.64:80/user/add', {name: this.userAddInput.name, password: this.userAddInput.password, role: this.userAddInput.selectRole, status: parseInt(this.userAddInput.status), department: {id: this.userAddInput.selectDepart}}).then(response => {
         if (response.body.status === 'success') {
           this.addUserVis = false
           this.$message({
@@ -294,7 +294,7 @@ export default {
       // console.log('this', this.userEditInput)
     },
     userEditConfirm () {
-      this.$http.put('http://112.74.48.64:80/user/edit', {id: this.userEditInput.id, password: this.userEditInput.password, name: this.userEditInput.name, role: this.userEditInput.selectRole, department: {id: this.userEditInput.selectDepart}, status: this.userEditInput.status}).then(response => {
+      this.$http.put('http://112.74.48.64:80/user/edit', {id: this.userEditInput.id, password: this.userEditInput.password, name: this.userEditInput.name, role: this.userEditInput.selectRole, department: {id: this.userEditInput.selectDepart}, status: parseInt(this.userEditInput.status)}).then(response => {
         if (response.body.status === 'success') {
           this.editUserVis = false
           this.$message({

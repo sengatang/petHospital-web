@@ -252,7 +252,7 @@
         <el-tab-pane label="图片展示" name="second">
          
           <div class="block">
-            <el-carousel trigger="click" height="300px" type="card">
+            <el-carousel trigger="click" height="400px" type="card">
               <el-carousel-item v-for="item in selectedRow.multimedias" :key="item.id">
                   <img :src="'http://112.74.48.64'+item.url" v-show="showImage(item)"><img>
               </el-carousel-item>
@@ -351,6 +351,11 @@ export default {
     this.getMedicineList()
     this.getVaccineList()
     this.getCategoryList()
+  },
+  watch: {
+    'addCaseVis': function () {
+      this.getCaseList()
+    }
   },
   methods: {
     showImage (item) {
